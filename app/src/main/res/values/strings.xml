@@ -1,12 +1,10 @@
 <resources>
-        <string name="app_name">desafio3android</string>
-        <string name="question">Pregunta</string>
-        <string name="category">Categoria</string>
-        <string name="dificulty">Dificultad</string>
-        <string name="boton1">Boton1</string>
-        <string name="boton2">Boton2</string>
-
-
+    <string name="app_name">desafio3android</string>
+    <string name="question">Pregunta</string>
+    <string name="category">Categoria</string>
+    <string name="dificulty">Dificultad</string>
+    <string name="boton1">Boton1</string>
+    <string name="boton2">Boton2</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

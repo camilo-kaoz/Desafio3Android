@@ -3,7 +3,7 @@ package com.desafiolatam.desafio3android.api;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitClient {
+public class  RetrofitClient {
 
         private static Retrofit retrofit;
         private static final String BASE_URL = "https://opentdb.com/";

@@ -3,6 +3,7 @@ package com.desafiolatam.desafio3android;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,33 +19,44 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView question, category, dificulty;
+    private String primera, segunda, tercera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initializeViews();
+
+
         Api api = RetrofitClient.getRetrofit().create(Api.class);
         Call<RespuestaApi> call = api.getQuestion();
         call.enqueue(new Callback<RespuestaApi>() {
+
             @Override
             public void onResponse(Call<RespuestaApi> call, Response<RespuestaApi> response) {
-                question.setText(response.body().getResults().get(0).getQuestion());
-                category.setText(response.body().getResults().get(0).getCategory());
-                dificulty.setText(response.body().getResults().get(0).getDifficulty());
+                primera = response.body().getResults().get(0).getQuestion();
+                segunda = response.body().getResults().get(0).getCategory();
+                tercera = response.body().getResults().get(0).getDifficulty();
+
+            initializerFragment(primera,segunda,tercera);
             }
+
             @Override
             public void onFailure(Call<RespuestaApi> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Algo Fallo, intentelo despues", Toast.LENGTH_SHORT).show();
-
+            Log.e("ERROR", t.toString());
 
             }
         });
     }
-    private void initializeViews(){
-        question = findViewById(R.id.texto1);
-        category = findViewById(R.id.texto2);
-        dificulty = findViewById(R.id.texto3);
+    private void initializerFragment (String primera, String segunda,String tercera){
+        Log.e("ERROR", "SI PASA ");
+        FirstFragment firstFragment = FirstFragment.newInstance(primera, segunda, tercera);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.framelayout, firstFragment,"FIRSTFRAGMENT")
+                .commit();
+
     }
 }
+
+
